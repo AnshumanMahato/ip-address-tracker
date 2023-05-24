@@ -1,5 +1,13 @@
+import Header from "./components/Header";
+import Map from "./components/Map";
+
 function App() {
-  return <h1 className="text-3xl font-bold underline">Hello world!</h1>;
+  return (
+    <div className="h-screen w-screen">
+      <Header />
+      <Map />
+    </div>
+  );
 }
 
 export default App;

@@ -9,6 +9,10 @@ export default {
     fontFamily: {
       Rubik: ["Rubik", "sans-serif"],
     },
+    backgroundImage: {
+      "pattern-mob": "url(src/assets/pattern-bg-mobile.png)",
+      "pattern-desk": "url(src/assets/pattern-bg-desktop.png)",
+    },
     extend: {},
   },
   plugins: [],
