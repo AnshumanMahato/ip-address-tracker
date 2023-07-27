@@ -1,10 +1,13 @@
 /** @type {import('tailwindcss').Config} */
+import colors from "tailwindcss/colors";
+
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     colors: {
-      "very-dark-gray": "#969696",
-      "dark-gray": "#2b2b2b",
+      white: colors.white,
+      "dark-gray": "#969696",
+      "very-dark-gray": "#2b2b2b",
     },
     fontFamily: {
       Rubik: ["Rubik", "sans-serif"],
