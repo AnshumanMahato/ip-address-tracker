@@ -13,7 +13,7 @@ function Info() {
   ));
 
   return (
-    <div className="bg-white w-full rounded-2xl p-4 flex flex-col justify-between items-center">
+    <div className="bg-white w-full rounded-2xl p-6 flex flex-col justify-between items-center">
       {renderedSections}
     </div>
   );
