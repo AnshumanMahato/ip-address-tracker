@@ -1,10 +1,13 @@
+import classNames from "classnames";
 import { useState } from "react";
 import { AiOutlineRight } from "react-icons/ai";
 
-function SearchBar() {
+function SearchBar({ className }) {
+  const classes = classNames("w-full flex", className);
+
   const [value, setValue] = useState("");
   return (
-    <div className="w-full flex">
+    <div className={classes}>
       <input
         type="text"
         name="search"
