@@ -1,13 +1,6 @@
 import InfoSection from "./InfoSection";
 
-function Info() {
-  const data = {
-    "ip address": "192.212.174.101",
-    location: "Brooklyn , NY 10001",
-    timezone: "UTC -5:00",
-    isp: "SpaceX Starlink",
-  };
-
+function Info({ data }) {
   const renderedSections = Object.keys(data).map((key) => (
     <InfoSection key={key} title={key} value={data[key]} />
   ));

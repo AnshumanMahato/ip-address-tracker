@@ -1,32 +1,34 @@
 import mapbox from "mapbox-gl/dist/mapbox-gl";
-import { useState } from "react";
 import { useEffect } from "react";
 import { useRef } from "react";
-mapbox.accessToken =
-  "pk.eyJ1IjoiYW5zaHVtYW5tYWhhdG8wOTM1IiwiYSI6ImNraWVsemlsdzF1NHIyeG81dHAwdm81MTAifQ.G3UTR4O2Wed8YhRAuy5xWg";
+import mapPin from "../assets/icon-location.svg";
+mapbox.accessToken = import.meta.env.VITE_MAPBOX_KEY;
 
-function Map() {
+function Map({ coords }) {
   const mapContainer = useRef(null);
   const map = useRef(null);
-  const [lng, setLng] = useState(-70.9);
-  const [lat, setLat] = useState(42.35);
-  const [zoom, setZoom] = useState(9);
+  const marker = useRef(null);
+  const markerEl = useRef(document.createElement("img"));
+  markerEl.current.src = mapPin;
 
   useEffect(() => {
-    if (map.current) return; // initialize map only once
     map.current = new mapbox.Map({
       container: mapContainer.current,
       style: "mapbox://styles/anshumanmahato0935/cll9buxak00o601pb6n83fs0b",
-      center: [lng, lat],
-      zoom: zoom,
+      center: [coords.lng, coords.lat],
+      interactive: false,
+      zoom: 10,
     });
-  }, [map, lat, lng, zoom]);
 
-  return (
-    <main ref={mapContainer} className=" grow">
-      Map
-    </main>
-  );
+    // Create a new marker.
+    marker.current = new mapbox.Marker({
+      element: markerEl.current,
+    })
+      .setLngLat([coords.lng, coords.lat])
+      .addTo(map.current);
+  }, [map, coords]);
+
+  return <main ref={mapContainer} className=" grow"></main>;
 }
 
 export default Map;
