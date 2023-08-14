@@ -3,7 +3,7 @@ import { useState } from "react";
 import { AiOutlineRight } from "react-icons/ai";
 
 function SearchBar({ className, fetchData }) {
-  const classes = classNames("w-full flex", className);
+  const classes = classNames("w-full sm:w-2/3 lg:w-1/2 flex", className);
 
   const [IP, setIP] = useState("");
 

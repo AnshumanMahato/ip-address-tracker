@@ -6,7 +6,7 @@ function Info({ data }) {
   ));
 
   return (
-    <div className="bg-white w-full rounded-2xl p-6 flex flex-col justify-between items-center">
+    <div className="bg-white w-full rounded-2xl p-6 flex flex-wrap shadow-xl">
       {renderedSections}
     </div>
   );
