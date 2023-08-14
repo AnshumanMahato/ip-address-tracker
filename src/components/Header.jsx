@@ -4,6 +4,7 @@ import isIP from "validator/es/lib/isIP";
 import { useState } from "react";
 import Info from "./Info";
 import SearchBar from "./SearchBar";
+import classNames from "classnames";
 
 function Header({ setCoords }) {
   const [ipData, setIpData] = useState({
@@ -42,10 +43,17 @@ function Header({ setCoords }) {
     }
   };
 
+  const classes = classNames(
+    "relative z-50",
+    "bg-pattern-mob lg:bg-pattern-desk bg-cover bg-no-repeat bg-center",
+    "h-1/3 py-6 lg:py-8 px-[6%] lg:px-[10%]",
+    "flex flex-col justify-between items-center"
+  );
+
   return (
-    <header className="relative bg-pattern-mob bg-cover bg-no-repeat bg-center h-2/6 py-6 px-[6%] lg:px-[10%] flex flex-col justify-between items-center z-50">
-      <h1 className=" text-white text-2xl font-bold">IP Address Tracker</h1>
-      <SearchBar className="my-4" fetchData={fetchData} />
+    <header className={classes}>
+      <h1 className="text-white text-2xl font-bold">IP Address Tracker</h1>
+      <SearchBar className="my-4 lg:mt-7 lg:mb-12" fetchData={fetchData} />
       <Info data={ipData} />
     </header>
   );
