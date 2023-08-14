@@ -22,9 +22,9 @@ function SearchBar({ className, fetchData }) {
         value={IP}
         onChange={(e) => setIP(e.target.value)}
         placeholder="Search for any ip address or domain"
-        className="px-4 py-3 xs:px-6 xs:py-4 grow rounded-l-2xl focus:outline-none text-sm xs:text-lg xl-up:text-xl"
+        className="px-4 py-3 xs:px-6 sm:py-4 grow rounded-l-xl xs:rounded-l-2xl focus:outline-none text-sm xs:text-lg xl-up:text-xl"
       />
-      <button className="bg-very-dark-gray px-4 xs:px-5 rounded-r-2xl">
+      <button className="bg-very-dark-gray px-4 xs:px-5 rounded-r-xl xs:rounded-r-2xl">
         <AiOutlineRight className="text-white text-base xs:text-lg font-bold" />
       </button>
     </form>
