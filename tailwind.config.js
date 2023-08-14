@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 import colors from "tailwindcss/colors";
+import defaultTheme from "tailwindcss/defaultTheme";
 
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
@@ -15,6 +16,11 @@ export default {
     backgroundImage: {
       "pattern-mob": "url(src/assets/pattern-bg-mobile.png)",
       "pattern-desk": "url(src/assets/pattern-bg-desktop.png)",
+    },
+    screens: {
+      xs: "375px",
+      ...defaultTheme.screens,
+      "xl-up": "1336px",
     },
     extend: {},
   },

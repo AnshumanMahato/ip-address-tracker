@@ -52,8 +52,13 @@ function Header({ setCoords }) {
 
   return (
     <header className={classes}>
-      <h1 className="text-white text-2xl font-bold">IP Address Tracker</h1>
-      <SearchBar className="my-4 lg:mt-7 lg:mb-12" fetchData={fetchData} />
+      <h1 className="text-white text-xl xs:text-2xl lg:text-3xl font-bold">
+        IP Address Tracker
+      </h1>
+      <SearchBar
+        className="my-4 sm:mt-6 sm:mb-10 xl-up:mt-8 xl-up:mb-12"
+        fetchData={fetchData}
+      />
       <Info data={ipData} />
     </header>
   );
