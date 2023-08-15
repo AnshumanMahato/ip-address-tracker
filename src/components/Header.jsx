@@ -1,7 +1,7 @@
 import axios from "axios";
 import isURL from "validator/es/lib/isURL";
 import isIP from "validator/es/lib/isIP";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Info from "./Info";
 import SearchBar from "./SearchBar";
 import classNames from "classnames";
@@ -14,42 +14,45 @@ function Header({ setCoords }) {
     isp: "SpaceX Starlink",
   });
 
-  const fetchData = useRef(async (address = "") => {
-    let url = `https://geo.ipify.org/api/v2/country,city?apiKey=${
-      import.meta.env.VITE_IPGEO_KEY
-    }`;
-    try {
-      if (isIP(address)) url += `&ipAddress=${address}`;
-      if (isURL(address)) {
-        address = address.replace("https://", "").split("/")[0];
-        url += `&domain=${address}`;
+  const fetchData = useCallback(
+    async (address = "") => {
+      let url = `https://geo.ipify.org/api/v2/country,city?apiKey=${
+        import.meta.env.VITE_IPGEO_KEY
+      }`;
+      try {
+        if (isIP(address)) url += `&ipAddress=${address}`;
+        if (isURL(address)) {
+          address = address.replace("https://", "").split("/")[0];
+          url += `&domain=${address}`;
+        }
+        const { data } = await axios.get(url);
+
+        setIpData({
+          "ip address": data.ip,
+          location: `${data.location.city} , ${data.location.country}`,
+          timezone: `UTC ${data.location.timezone}`,
+          isp: data.isp,
+        });
+
+        setCoords({
+          lng: data.location.lng,
+          lat: data.location.lat,
+        });
+      } catch (error) {
+        alert(`failed to fetch data: ${error.message}`);
+        console.error(error);
       }
-      const { data } = await axios.get(url);
-
-      setIpData({
-        "ip address": data.ip,
-        location: `${data.location.city} , ${data.location.country}`,
-        timezone: `UTC ${data.location.timezone}`,
-        isp: data.isp,
-      });
-
-      setCoords({
-        lng: data.location.lng,
-        lat: data.location.lat,
-      });
-    } catch (error) {
-      alert(`failed to fetch data: ${error.message}`);
-      console.error(error);
-    }
-  });
+    },
+    [setCoords]
+  );
 
   useEffect(() => {
-    (async () => await fetchData.current())();
+    (async () => await fetchData())();
   }, [fetchData]);
 
   const classes = classNames(
     "relative z-50",
-    "bg-mobile lg:bg-desktop bg-cover bg-no-repeat bg-center",
+    "bg-image bg-cover bg-no-repeat bg-center",
     "h-1/3 py-6 lg:py-8 px-[6%] lg:px-[10%]",
     "flex flex-col justify-between items-center"
   );
@@ -61,7 +64,7 @@ function Header({ setCoords }) {
       </h1>
       <SearchBar
         className="my-4 sm:mt-6 sm:mb-10 xl-up:mt-8 xl-up:mb-12"
-        fetchData={fetchData.current}
+        fetchData={fetchData}
       />
       <Info data={ipData} />
     </header>
