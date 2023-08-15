@@ -1,7 +1,7 @@
 import axios from "axios";
 import isURL from "validator/es/lib/isURL";
 import isIP from "validator/es/lib/isIP";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Info from "./Info";
 import SearchBar from "./SearchBar";
 import classNames from "classnames";
@@ -14,7 +14,7 @@ function Header({ setCoords }) {
     isp: "SpaceX Starlink",
   });
 
-  const fetchData = async (address) => {
+  const fetchData = useRef(async (address = "") => {
     let url = `https://geo.ipify.org/api/v2/country,city?apiKey=${
       import.meta.env.VITE_IPGEO_KEY
     }`;
@@ -41,7 +41,11 @@ function Header({ setCoords }) {
       alert(`failed to fetch data: ${error.message}`);
       console.error(error);
     }
-  };
+  });
+
+  useEffect(() => {
+    (async () => await fetchData.current())();
+  }, [fetchData]);
 
   const classes = classNames(
     "relative z-50",
@@ -57,7 +61,7 @@ function Header({ setCoords }) {
       </h1>
       <SearchBar
         className="my-4 sm:mt-6 sm:mb-10 xl-up:mt-8 xl-up:mb-12"
-        fetchData={fetchData}
+        fetchData={fetchData.current}
       />
       <Info data={ipData} />
     </header>
