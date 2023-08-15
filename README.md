@@ -20,7 +20,9 @@ Users should be able to:
   
 ## Screenshot
 
-![](./screenshot.jpg)
+![screenshot-1692057909721](https://github.com/AnshumanMahato/ip-address-tracker/assets/58422570/1bf4e7b7-f53d-49d4-bfeb-2c02b7f9570c)
+![screenshot-1692057888229](https://github.com/AnshumanMahato/ip-address-tracker/assets/58422570/504c3a8a-990e-4793-be01-4fe13f07c4fd)
+![screenshot-1692057857411](https://github.com/AnshumanMahato/ip-address-tracker/assets/58422570/57a89759-5b56-49b1-92be-f01b310bc373)
 
 ## Links
 
