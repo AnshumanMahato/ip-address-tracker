@@ -49,7 +49,7 @@ function Header({ setCoords }) {
 
   const classes = classNames(
     "relative z-50",
-    "bg-pattern-mob lg:bg-pattern-desk bg-cover bg-no-repeat bg-center",
+    "bg-mobile lg:bg-desktop bg-cover bg-no-repeat bg-center",
     "h-1/3 py-6 lg:py-8 px-[6%] lg:px-[10%]",
     "flex flex-col justify-between items-center"
   );
